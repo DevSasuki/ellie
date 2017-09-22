@@ -172,7 +172,7 @@ message.channel.send(':ok_hand:')
      message.guild.member(userToKick).kick(reason)
      message.channel.send("Successfully kicked that user! :boot:");
   }.catch(error => {
-        message.channel.send('An error occured!' + error);
+        message.channel.send('An error occured!');
 
 if (message.content.startsWith(prefix + 'announce')) {
   if (!message.member.permissions.has("MANAGE_ROLES_OR_PERMISSIONS")) {
@@ -252,15 +252,6 @@ var milliseconds = parseInt((bot.uptime % 1000) / 100),
 
        message.channel.send(":chart_with_upwards_trend: I've been running for** " + hours + " **hours, **" + minutes + "** minutes and **" + seconds + "." + milliseconds + "** seconds!");
 }
-
-if (message.content.startsWith(prefix + "r")) {
-   if(message.author.id !== '298706728856453121') return
- 				message.channel.send(`${restartMessages[Math.floor(Math.random() * restartMessages.length)]}`).then(() => {
- 					bot.destroy().then(() => {
- 						process.exit();
-        })
-      })
-      }
 
       if (message.content.startsWith(prefix + "kiss")) {
         let userToKiss = message.mentions.members.first()
