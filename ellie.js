@@ -14,8 +14,6 @@ const restartMessages = ["Rebooting...", "Re:boot:ing...", "Breaking something..
 const HugGifs = ["https://media.giphy.com/media/lXiRKBj0SAA0EWvbG/giphy.gif", "https://media.giphy.com/media/EvYHHSntaIl5m/giphy.gif", "https://media.giphy.com/media/8KKRIP5ZHUo2k/giphy.gif", "https://media.giphy.com/media/llmZp6fCVb4ju/giphy.gif", "https://media.giphy.com/media/gnXG2hODaCOru/giphy.gif", "https://media.giphy.com/media/xT1XGPy39lDKJ5Gc5W/giphy.gif", "https://media.giphy.com/media/OiKAQbQEQItxK/giphy.gif", "https://media.giphy.com/media/8tpiC1JAYVMFq/giphy.gif", "https://media.giphy.com/media/3EJsCqoEiq6n6/giphy.gif", "https://media.giphy.com/media/4d4HEGpLiwTQc/giphy.gif"]
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-const fs = require("fs")
-const sql = require("sqlite");
 
 let prefix = ['e!', 'elliepls'];
 
@@ -724,36 +722,6 @@ if (message.content.startsWith(prefix + 'mute')) {
   }});
   message.guild.member(user).removeRole(Muted);
   }
-
-  if( Copypasta.some(word => message.content.includes(word)) ) {
-    message.delete();
-    message.channel.send(`**The Discord Alert Copypasta
-And why you're an idiot for believing it**
-
-There have been numerous copypastas going around "warning" users about specific users. The user in question varies, but 99% of the time it isn't even a real account. The copypasta goes on to claim how they "send friend requests" and if you accept the friend request you'll get "DDoSed", causing all the members of their groups to fall victim as well.
-
-I'd like to invite you to take a minute to close your eyes, and just imagine how stupid this claim is. Really.
-
-**1.** The Discord Team would not rely on word of mouth to spread the news of any danger. They would make a blog post, and make an announcement in their official guild. Really, common sense.
-
-**2.** The Discord Team would not warn people about a specific account. They would just delete it. Again, common sense.
-
-**3.** It is impossible to DDoS somebody from a friend request. This part of the copypasta targets those who are technologically incompetent, and don't actually know what DDoSing is.
-
-A DDoS (Distributed Denial of Service) attack is something that overloads a server/network to force it to crash, go down, or become inaccessible. In order to achieve this, you need an IP address.
-
-At no point does Discord ever expose your IP address. Thus, it is impossible for somebody to DDoS you via friend request.
-
-Futhermore, DDoSing is not hacking. It is not a virus that can spread to other users. Even if some sort of malware is involved, it can't just jump from user accounts based on friend request.
-
-And finally, even if Discord did accidently expose your IP address, it certainly wouldn't require something as trivial as a friend request to obtain.
-
-Conclusion
-
-${message.author}, *Before you start spam copy-pasting things just because it tells you to, give it an actual read through to make sure you're not just being an absolute idiot. Thanks.*`);
-  }
-
-
     if(message.content.startsWith(prefix+'ping')) {
   message.channel.send('Ping?').then(m => m.edit(`${pingresponse[Math.floor(Math.random() * pingresponse.length)]} | Response Delay: **${m.createdTimestamp - message.createdTimestamp}ms**.`) );
 }
@@ -1031,4 +999,4 @@ function clean(text) {
 });
 
 
-bot.login('MzI5OTI2MTQ5NzM0MTM3ODU2.DDdsMA.TL2LZl7NA-Ne5ZPrpT6OTJTtJs4');
+bot.login(process.env.BOT_TOKEN);
