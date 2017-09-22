@@ -90,62 +90,6 @@ bot.on('message', message => {
     return message.author.send(`Whoops! You sent \`${message.content}\` but I couldn't respond to it. Please make sure I have permissions to send messages.`)
 }
 
-
-  sql.open("./score.sqlite");
-
-    if (message.author.bot) return;
-    if (message.channel.type !== "text") return;
-
-    sql.get(`SELECT * FROM scores WHERE userId ="${message.author.id}"`).then(row => {
-      if (!row) {
-        sql.run("INSERT INTO scores (userId, points, level) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
-      } else {
-        let curLevel = Math.floor(0.1 * Math.sqrt(row.points + 1));
-        if (curLevel > row.level) {
-          row.level = curLevel;
-          sql.run(`UPDATE scores SET points = ${row.points + 1}, level = ${row.level} WHERE userId = ${message.author.id}`);
-          const embed = new Discord.RichEmbed()
-          .setAuthor(`LEVEL UP!`, `${message.author.avatarURL}`)
-
-          .setColor("0x5fef2f")
-          .setDescription(`You are now level ${curLevel}!`)
-          message.channel.send({embed});
-        }
-        sql.run(`UPDATE scores SET points = ${row.points + 1} WHERE userId = ${message.author.id}`);
-      }
-    }).catch(() => {
-      console.error;
-      sql.run("CREATE TABLE IF NOT EXISTS scores (userId TEXT, points INTEGER, level INTEGER)").then(() => {
-        sql.run("INSERT INTO scores (userId, points, level) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
-      });
-    });
-
-    if (message.content.startsWith(prefix + "level")) {
-      let target = message.mentions.users.first();
-
-      if (!target) return sql.get(`SELECT * FROM scores WHERE userId ="${message.author.id}"`).then(row => {
-        const embed = new Discord.RichEmbed()
-        .setAuthor(`${message.author.username}`, `${message.author.avatarURL}`)
-
-        .setColor("0x7bd8d3")
-        .addField(`Points`, `${row.points}`, true)
-        .addField(`Level`, `${row.level}`, true)
-
-        return message.channel.send({embed});
-        if (!row) return message.reply("Your current level is 0");
-
-    sql.get(`SELECT * FROM scores WHERE userId ="${target.id}"`).then(row => {
-        const embed = new Discord.RichEmbed()
-        .setAuthor(`${target.username}`, `${target.avatarURL}`)
-
-        .setColor("0x7bd8d3")
-        .addField(`Points`, `${row.points}`, true)
-        .addField(`Level`, `${row.level}`, true)
-  message.channel.send({embed})
-      });
-    });
-  }
-
   if (message.content.startsWith(prefix + 'prune')) {
     if (!message.member.permissions.has("MANAGE_MESSAGES")) {
       message.channel.send('Sorry, you do not have permission to execute the "prune" command!');
