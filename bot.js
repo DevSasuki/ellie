@@ -195,8 +195,8 @@ if(!message.guild.channels.find('name', 'announcements')) return message.guild.d
 message.guild.channels.find('name', 'announcements').send({embed})
 }
 
-if(message.content.startsWith(prefix + 'sayd')) {
-  if (message.author.id !== '298706728856453121') return message.channel.send("Only developers can use this command!");
+if(message.content.startsWith(prefix + 'Say')) {
+  if (message.author.id !== '298706728856453121') return;
   let wordz = message.content.split(' ')[0];
   wordz = wordz.slice(prefix.length);
 
