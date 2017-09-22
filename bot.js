@@ -919,7 +919,6 @@ if (message.content.startsWith(prefix + 'eval')) {
 
         .setColor("0x4f351")
         .setDescription(`:inbox_tray: Input: \n \`\`\`${evalstuff}\`\`\` \n :outbox_tray: Output: \n  \`\`\`${clean(evaled)}\`\`\``)
-        .setFooter('Eval command revamped by Nicki#8825')
 
       message.channel.send({embed});
     } catch (err) {
