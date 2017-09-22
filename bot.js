@@ -14,7 +14,6 @@ const restartMessages = ["Rebooting...", "Re:boot:ing...", "Breaking something..
 const HugGifs = ["https://media.giphy.com/media/lXiRKBj0SAA0EWvbG/giphy.gif", "https://media.giphy.com/media/EvYHHSntaIl5m/giphy.gif", "https://media.giphy.com/media/8KKRIP5ZHUo2k/giphy.gif", "https://media.giphy.com/media/llmZp6fCVb4ju/giphy.gif", "https://media.giphy.com/media/gnXG2hODaCOru/giphy.gif", "https://media.giphy.com/media/xT1XGPy39lDKJ5Gc5W/giphy.gif", "https://media.giphy.com/media/OiKAQbQEQItxK/giphy.gif", "https://media.giphy.com/media/8tpiC1JAYVMFq/giphy.gif", "https://media.giphy.com/media/3EJsCqoEiq6n6/giphy.gif", "https://media.giphy.com/media/4d4HEGpLiwTQc/giphy.gif"]
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-const fs = require("fs")
 
 let prefix = ['e!', 'elliepls'];
 
