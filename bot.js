@@ -169,10 +169,10 @@ message.channel.send(':ok_hand:')
    if(message.mentions.users.size === 0) {
       return message.reply("Please mention a user to kick.");
   }
-  if(!userToKick.kickable) return message.channel.send(`I can't kick ${userToKick.username}!`)
      message.guild.member(userToKick).kick(reason)
      message.channel.send("Successfully kicked that user! :boot:");
-  }
+  }.catch(error => {
+        message.channel.send('An error occured!' + error);
 
 if (message.content.startsWith(prefix + 'announce')) {
   if (!message.member.permissions.has("MANAGE_ROLES_OR_PERMISSIONS")) {
