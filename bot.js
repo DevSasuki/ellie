@@ -173,7 +173,7 @@ message.channel.send(':ok_hand:')
      message.channel.send("Successfully kicked that user! :boot:");
   }.catch(error => {
         message.channel.send('An error occured!');
-
+  }
 if (message.content.startsWith(prefix + 'announce')) {
   if (!message.member.permissions.has("MANAGE_ROLES_OR_PERMISSIONS")) {
     message.channel.send('Sorry, you do not have permission to execute the "announce" command!');
