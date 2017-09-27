@@ -46,23 +46,6 @@ bot.on('ready', () => {
         timestamp: new Date(),
         }
       });
-  }).catch(() => {
-    guild.fetchAuditLogs({type: "MEMBER_BAN_ADD",limit: 1}).then(d => {
-    let entry = d.entries.first();
-    let mod = entry.executor;
-    let punished = entry.target;
-    guild.channels.find('name', 'mod-log').send('', {
-      embed: {
-        color: 0xff0202,
-        author: {
-          name: mod.username,
-          icon_url: mod.avatarURL
-        },
-        url: '',
-        description: `**Action:** Ban\n**Member:** ${punished.username}#${punished.discriminator} (${punished.id})\n**Reason:** None given`,
-        timestamp: new Date(),
-        }
-      });
   })
 });
 
