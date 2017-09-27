@@ -47,7 +47,11 @@ bot.on('ready', () => {
         }
       });
   })
-if(!entry.reason) return  guild.channels.find('name', 'mod-log').send('', {
+if(!entry.reason) return guild.fetchAuditLogs({type: "MEMBER_BAN_ADD",limit: 1}).then(d => {
+    let entry = d.entries.first();
+    let mod = entry.executor;
+    let punished = entry.target;
+    guild.channels.find('name', 'mod-log').send('', {
       embed: {
         color: 0xff0202,
         author: {
@@ -59,6 +63,7 @@ if(!entry.reason) return  guild.channels.find('name', 'mod-log').send('', {
         timestamp: new Date(),
         }
       });
+  })
 });
 
 
