@@ -46,8 +46,8 @@ bot.on('ready', () => {
         timestamp: new Date(),
         }
       });
-  })
-if(!entry.reason) return guild.fetchAuditLogs({type: "MEMBER_BAN_ADD",limit: 1}).then(d => {
+  }).catch(() => {
+    guild.fetchAuditLogs({type: "MEMBER_BAN_ADD",limit: 1}).then(d => {
     let entry = d.entries.first();
     let mod = entry.executor;
     let punished = entry.target;
