@@ -47,6 +47,18 @@ bot.on('ready', () => {
         }
       });
   })
+if(!entry.reason) return  guild.channels.find('name', 'mod-log').send('', {
+      embed: {
+        color: 0xff0202,
+        author: {
+          name: mod.username,
+          icon_url: mod.avatarURL
+        },
+        url: '',
+        description: `**Action:** Ban\n**Member:** ${punished.username}#${punished.discriminator} (${punished.id})\n**Reason:** None given`,
+        timestamp: new Date(),
+        }
+      });
 });
 
 
